@@ -1,31 +1,44 @@
 #include <iostream>
 #include <vector>
+#include <stdlib.h>
 using namespace std;
 
 size_t
 find_max(vector<size_t> bins) {
-	size_t max = bins[0];
+	size_t max;
+	if (bins.size() > 0) {
+		 max = bins[0];
 
-	for (size_t bin:bins){
-		if (max < bin) {
-			max = bin;
+		for (size_t bin : bins) {
+			if (max < bin) {
+				max = bin;
+			}
 		}
+	}
+	else {
+		exit(0);
 	}
 	return max;
 }
 void 
 find_min_max(vector<double> numbers, double& min, double& max) {
-	min = numbers[0];
-	max = numbers[0];
-	for (double number : numbers)
-	{
-		if (min > number)
+
+	if (numbers.size() == 0) {
+		exit;
+	}
+	else {
+		min = numbers[0];
+		max = numbers[0];
+		for (double number : numbers)
 		{
-			min = number;
-		}
-		if (max < number)
-		{
-			max = number;
+			if (min > number)
+			{
+				min = number;
+			}
+			if (max < number)
+			{
+				max = number;
+			}
 		}
 	}
 }
