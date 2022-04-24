@@ -56,7 +56,7 @@ int main()
 	
 	//Вывод данных
 	
-	show_histogram_svg(bins);
+	show_histogram_svg_2(bins);
 
 	
 
