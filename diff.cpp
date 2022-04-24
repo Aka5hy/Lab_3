@@ -70,12 +70,24 @@ void show_bin(vector<size_t> bins, const double max_bin, const double ratio) {
 		cout << endl;
 	}
 }
-void find_ratio(size_t max_bin, const size_t maximum_in_bin, double& ratio) {
-
-	/*if (max_bin > maximum_in_bin)
+void 
+find_ratio(size_t max_bin, const size_t bin_heght, const size_t Height, const size_t Red_line, double& ratio) {
+	ratio = 1;
+	if (max_bin * bin_heght > Height - 2 * Red_line)
 	{
-		ratio = (double)maximum_aste_in_bin / (double)max_bin;
-	}*/
+		ratio = double(Height - 2 * Red_line) / ((double(bin_heght) * double(max_bin)));
+	}
 }
 	
+size_t
+Picture_ratio(size_t max_bin, const size_t bin_heght, const size_t Height, const size_t Red_line) {
+	
+	if (max_bin * bin_heght < Height - 2 * Red_line) {
+	
+		return Height;
+	}
+	else {
+		return max_bin * bin_heght;
+	}
+}
 

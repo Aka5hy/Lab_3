@@ -41,13 +41,28 @@ test_0ne() {
 
 }
 void
-test_color() {
+test_ratio() {
+    double ratio;
 
-
-
-
+    find_ratio(4, 10, 100, 10, ratio);
+    assert(ratio == 1);
 
 }
+void
+test_ratio_2() {
+    double ratio;
+
+    find_ratio(10, 10, 100, 10, ratio);
+    assert(ratio != 1);
+
+}
+void
+Test_picture() {
+    size_t height = Picture_ratio(11, 10, 100, 10);
+    
+    assert(height == 110 );
+}
+
 
 
 using namespace std;
@@ -57,8 +72,9 @@ int main()
     test_neganive();
     test_zero();
     test_0ne();
-   
-
+    test_ratio();
+    test_ratio_2();
+    Test_picture();
 
 	return 1;
 }
