@@ -15,3 +15,5 @@ size_t
 find_max(vector<size_t> bins);
 size_t
 Picture_ratio(size_t max_bin, const size_t bin_heght, const size_t Height, const size_t Red_line);
+size_t
+Width_calculate(const size_t Need);

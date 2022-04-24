@@ -64,7 +64,6 @@ Test_picture() {
 }
 
 
-
 using namespace std;
 int main()
 {
@@ -75,6 +74,6 @@ int main()
     test_ratio();
     test_ratio_2();
     Test_picture();
-
+    assert(Width_calculate(10) == 2);
 	return 1;
 }

@@ -90,4 +90,13 @@ Picture_ratio(size_t max_bin, const size_t bin_heght, const size_t Height, const
 		return max_bin * bin_heght;
 	}
 }
+size_t
+Width_calculate(const size_t Need) {
 
+	size_t i = 1;
+	while (Need >= pow(10,i)) {
+		i++;
+	}
+
+	return i;
+}

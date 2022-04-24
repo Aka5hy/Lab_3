@@ -91,14 +91,16 @@ show_histogram_svg_2(const vector<size_t>& bins) {
     const auto BLOCK_WIDTH = 30;
 
 
-    size_t Heigt = Picture_ratio(find_max(bins), BIN_HEIGHT, IMAGE_HEIGHT, TEXT_BASELINE);
-    svg_begin(IMAGE_WIDTH, double(Heigt));
+    size_t Heigt = Picture_ratio(find_max(bins), BIN_HEIGHT, IMAGE_HEIGHT, TEXT_BASELINE + BLOCK_WIDTH);
+
+    double k = double(Width_calculate(find_max(bins)));
+    svg_begin(TEXT_LEFT * 2 + BLOCK_WIDTH * double(bins.size()) * k), double(Heigt);
 
         size_t i = 0;
         for (size_t bin : bins) {
 
-            svg_text(TEXT_LEFT + BLOCK_WIDTH * i, TEXT_BASELINE, to_string(bin));
-            svg_rect(TEXT_LEFT - 1 + BLOCK_WIDTH * i, TEXT_BASELINE + 2, BLOCK_WIDTH, BIN_HEIGHT * bin, "black", "grey");
+            svg_text(TEXT_LEFT + BLOCK_WIDTH / 2 * k * i + 5, TEXT_BASELINE, to_string(bin));
+            svg_rect(TEXT_LEFT - 1 + BLOCK_WIDTH / 2 * k * i, TEXT_BASELINE + BLOCK_WIDTH / 3, BLOCK_WIDTH / 2 * k, BIN_HEIGHT * bin, "black", "grey");
 
             i++;
         }
