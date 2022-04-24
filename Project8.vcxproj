@@ -141,9 +141,11 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="diff.cpp" />
+    <ClCompile Include="SVG.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="diffr.h" />
+    <ClInclude Include="SVG.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

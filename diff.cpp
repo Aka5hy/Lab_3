@@ -1,7 +1,20 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-void find_min_max(vector<double> numbers, double& min, double& max) {
+
+size_t
+find_max(vector<size_t> bins) {
+	size_t max = bins[0];
+
+	for (size_t bin:bins){
+		if (max < bin) {
+			max = bin;
+		}
+	}
+	return max;
+}
+void 
+find_min_max(vector<double> numbers, double& min, double& max) {
 	min = numbers[0];
 	max = numbers[0];
 	for (double number : numbers)
@@ -24,7 +37,7 @@ input_numbers(size_t count) {
 	}
 	return result;
 }
- void show_bin(vector<size_t> bins, size_t max_bin, const double ratio) {
+void show_bin(vector<size_t> bins, const double max_bin, const double ratio) {
 
 	for (size_t i = 0; i < (max_bin * ratio); i++)
 	{
@@ -43,13 +56,13 @@ input_numbers(size_t count) {
 
 		cout << endl;
 	}
- }
-void find_ratio(size_t max_bin, const size_t maximum_asterisks_in_bin, double& ratio) {
+}
+void find_ratio(size_t max_bin, const size_t maximum_in_bin, double& ratio) {
 
-	if (max_bin > maximum_asterisks_in_bin)
+	/*if (max_bin > maximum_in_bin)
 	{
-		ratio = (double)maximum_asterisks_in_bin / (double)max_bin;
-	}
+		ratio = (double)maximum_aste_in_bin / (double)max_bin;
+	}*/
 }
 	
 

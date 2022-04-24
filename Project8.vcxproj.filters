@@ -21,9 +21,15 @@
     <ClCompile Include="diff.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="SVG.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="diffr.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="SVG.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

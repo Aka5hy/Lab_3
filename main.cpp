@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include"diffr.h"
+#include"SVG.h"
 using namespace std;
 
 
@@ -52,22 +53,13 @@ int main()
 			bins[bin_count - 1]++;
 		}
 	}
+	
+	//Вывод данных
+	
+	show_histogram_svg(bins);
 
-	size_t max_bin = bins[0];
-	for (size_t bin : bins)
-	{
-		if (max_bin < bin)
-		{
-			max_bin = bin;
-		}
-
-	}
-	double ratio = 1;
-	find_ratio(max_bin, maximum_asterisks_in_bin, ratio);
 	
 
-	//Вывод данных
-	show_bin(bins, max_bin, ratio);
 
 	return 1;
 }
