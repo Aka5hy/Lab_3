@@ -58,11 +58,22 @@ test_ratio_2() {
 }
 void
 Test_picture() {
-    size_t height = Picture_ratio(11, 10, 100, 10);
+    size_t height = Picture_ratio(10, 10, 100, 10);
     
-    assert(height == 110 );
+    assert(height == 120 );
 }
+void
+Test_picture_2() {
+    size_t height = Picture_ratio(1, 10, 100, 10);
 
+    assert(height == 100);
+}
+void
+Test_picture_3() {
+    size_t height = Picture_ratio(11, 10, 100, 10);
+
+    assert(height == 130);
+}
 
 using namespace std;
 int main()
@@ -74,6 +85,7 @@ int main()
     test_ratio();
     test_ratio_2();
     Test_picture();
+    Test_picture_2();
     assert(Width_calculate(10) == 2);
 	return 1;
 }

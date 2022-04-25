@@ -87,7 +87,7 @@ Picture_ratio(size_t max_bin, const size_t bin_heght, const size_t Height, const
 		return Height;
 	}
 	else {
-		return max_bin * bin_heght;
+		return max_bin * bin_heght + 2 * Red_line;
 	}
 }
 size_t
