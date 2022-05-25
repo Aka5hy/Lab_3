@@ -25,12 +25,21 @@ svg_text(double left, double baseline, string text) {
     cout << "<text x='" << left << "' y='" << baseline << "'>" << text << "</text>";
 }
 
-    void svg_rect(double x, double y, double width, double height, string stroke = "black", string fill = "black") {
-        cout << "<rect x='" << x << "' y='" << y << "' " "width='" << width << "' " "height='" << height 
-             << "' " "stroke='" << stroke << "' " "fill='" << fill << "' />";
+void svg_rect(double x, double y, double width, double height, string stroke, string fill ) {
+
+    cout << "<rect x='" << x << "' y='" << y << "' " "width='" << width << "' " "height='" << height 
+         << "' " "stroke='" << stroke << "' " "fill='" << fill << "' />";
+ }
+
+void
+make_histogramm_on_svg(double ratio, const vector<size_t>& bins){
+    
+
+
+
+
+
     }
-
-
 void
 show_histogram_svg(const vector<size_t>& bins) {
     const auto IMAGE_WIDTH = 400;
@@ -40,86 +49,18 @@ show_histogram_svg(const vector<size_t>& bins) {
     const auto TEXT_WIDTH = 50;
     const auto BIN_HEIGHT = 30;
     const auto BLOCK_WIDTH = 30;
+    svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
+    double ratio = find_ratio(find_max(bins), BIN_HEIGHT, IMAGE_HEIGHT, TEXT_BASELINE);
 
+    for (size_t i = 0;i < bins.size(); i++) {
 
-
-    if (bins.size() == 0) {
-
-        exit(0);
-
+        svg_text(TEXT_LEFT + BLOCK_WIDTH * i, TEXT_BASELINE, to_string(bins[i]));
+        svg_rect(TEXT_LEFT - 1 + BLOCK_WIDTH * i, TEXT_BASELINE + 2, BLOCK_WIDTH, BIN_HEIGHT * bins[i] * ratio, "black", "grey");
     }
-    else {
-
-        bool flag;
-
-        if (find_max(bins) > 999 || bins.size() > (IMAGE_WIDTH - TEXT_LEFT * 2) / 30) {
-            flag = false;
-        }
-        else {
-            flag = true;
-
-        }
-
-        svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
-
-        if (flag) {
-
-            double ratio;
-            find_ratio(find_max(bins), BIN_HEIGHT, IMAGE_HEIGHT, TEXT_BASELINE, ratio);
 
 
-            size_t i = 0;
-            for (size_t bin : bins) {
-
-                svg_text(TEXT_LEFT + BLOCK_WIDTH * i, TEXT_BASELINE, to_string(bin));
-                svg_rect(TEXT_LEFT - 1 + BLOCK_WIDTH * i, TEXT_BASELINE + 2, BLOCK_WIDTH, BIN_HEIGHT * bin * ratio, "black", "grey");
-
-                i++;
-            }
-        }
-        else {
-
-            cout << "Error: Limit of elemets in histagram was broken";
-            svg_text(TEXT_LEFT, TEXT_BASELINE, "Error: Limit of elemets in histagramm was broken!!");
-
-        }
-
-        svg_end();
-    }
+    svg_end();
 }
-void
-show_histogram_svg_2(const vector<size_t>& bins) {
 
     
 
-    
-        const auto IMAGE_WIDTH = 400;
-        const auto IMAGE_HEIGHT = 300;
-        const auto TEXT_LEFT = 20;
-        const auto TEXT_BASELINE = 20;
-        const auto TEXT_WIDTH = 50;
-        const auto BIN_HEIGHT = 30;
-        const auto BLOCK_WIDTH = 30;
-
-
-        size_t Heigt = Picture_ratio(find_max(bins), BIN_HEIGHT, IMAGE_HEIGHT, TEXT_BASELINE + BLOCK_WIDTH);
-
-        double k = double(Width_calculate(find_max(bins)));
-
-        svg_begin((TEXT_LEFT * 2 + BLOCK_WIDTH * double(bins.size()) * k), double(Heigt));
-
-        size_t i = 0;
-        for (size_t bin : bins) {
-
-            svg_text(TEXT_LEFT + BLOCK_WIDTH / 2 * k * i + 5, TEXT_BASELINE, to_string(bin));
-            svg_rect(TEXT_LEFT - 1 + BLOCK_WIDTH / 2 * k * i, TEXT_BASELINE + BLOCK_WIDTH / 3, BLOCK_WIDTH / 2 * k, BIN_HEIGHT * bin, "black", "grey");
-
-            i++;
-        }
-
-        svg_end();
-
-    
-
-
-}
