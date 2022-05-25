@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
-#include"diffr.h"
+
 #include<string>
 using namespace std;
-
+#include"diffr.h"
 void
 svg_begin(double width = 400, double height = 300) {
     cout << "<?xml version='1.0' encoding='UTF-8'?>\n";

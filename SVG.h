@@ -1,4 +1,5 @@
 #pragma once
+#include"diffr.h"
 void
 svg_begin(double width, double height);
 void
