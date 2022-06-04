@@ -23,15 +23,6 @@ test_neganive(){
 
 }
 void
-test_zero() {
-    double min = 0;
-    double max = 0;
-    find_min_max({}, min, max);
-    assert(min == 0);
-    assert(max == 0);
-
-}
-void
 test_one() {
     double min = 0;
     double max = 0;
@@ -42,9 +33,9 @@ test_one() {
 }
 void
 test_without_ratio() {
-    double ratio;
+    double ratio = find_ratio(4, 10, 100, 10);
 
-    find_ratio(4, 10, 100, 10);
+    
     assert(ratio == 1);
 
 }
@@ -79,7 +70,6 @@ int main()
 {
     test_positive();
     test_neganive();
-    test_zero();
     test_one();
     test_with_ratio();
     test_without_ratio();

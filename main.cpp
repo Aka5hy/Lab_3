@@ -3,6 +3,7 @@
 #include <vector>
 #include"SVG.h"
 #include<string.h>
+#include <curl/curl.h>
 
 
 
@@ -13,6 +14,8 @@ using namespace std;
 int
 main()
 {
+	
+
 	//Ввод данных
 	const auto input = read_input(cin,true);
 	// Расчеты
@@ -20,6 +23,6 @@ main()
 	//Вывод данных
 	show_histogram_svg(bins);
 
-
+	
 	return 1;
 }
