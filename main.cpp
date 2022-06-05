@@ -12,9 +12,17 @@ using namespace std;
 
 #include"diffr.h"
 int
-main()
+main(int argc, char** argv)
 {
-	
+	if(argc > 1 ) {
+		cerr << argc << endl;
+		for (size_t i = 0; i < argc; i++)
+		{
+			cerr << "argv[" << i + 1 << "]" << argv[i];
+		}
+		
+		return 0;
+	}
 
 	//¬вод данных
 	const auto input = read_input(cin,true);
