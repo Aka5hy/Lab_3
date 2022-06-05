@@ -67,4 +67,33 @@ show_histogram_svg(const vector<size_t>& bins) {
     svg_end();
 }
 
+string make_info_text() {
+    DWORD WINAPI GetVersion(void);
+    stringstream buffer;
+    const auto R = GetVersion();
+    printf("n = %lu\n", R);
+    printf("n = %lx\n", R);
+    DWORD mask = 0b00000000'00000000'11111111'11111111;
+    DWORD version = R & mask;
+    printf("ver = %lu\n", version);
+    DWORD platform = R >> 16;
+    printf("ver2 = %lu\n", platform);
+    DWORD mask2 = 0b00000000'11111111;
+    DWORD version_major = version & mask2;
+    printf("version_major = %lu\n", version_major);
+    DWORD version_minor = version >> 8;
+    printf("version_minor = %lu\n", version_minor);
+    DWORD build;
+    if ((R & 0x80000000) == 0)
+    {
+        build = platform;
+        printf("build = %lu\n", build);
 
+    }
+    buffer << "Windows" << " " << "v" << " " << version_major << "." << version_minor << " " << "(build" << " " << build << ")" << endl;
+    TCHAR storage[MAX_COMPUTERNAME_LENGTH + 1];
+    DWORD  bufCharCount = MAX_COMPUTERNAME_LENGTH + 1;
+    GetComputerNameA(LPSTR(storage), &bufCharCount);
+    buffer << "Computer name:" << " " << storage;
+    return buffer.str();
+}
