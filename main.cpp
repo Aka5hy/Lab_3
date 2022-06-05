@@ -4,6 +4,9 @@
 #include"SVG.h"
 #include<string.h>
 #include <curl/curl.h>
+#include <sstream>
+#include <string>
+#include <windows.h>
 
 
 
@@ -11,21 +14,62 @@
 using namespace std;
 
 #include"diffr.h"
+size_t write_data(void* items, size_t item_size, size_t item_count, void* ctx) {
+    size_t data_size = item_size * item_count;
+    stringstream* buffer = reinterpret_cast<stringstream*>(ctx);
+    buffer->write(reinterpret_cast<const char*>(items), data_size);
+    return data_size;
+
+}
+
+
+
+
+Input
+download(const string& address) {
+    stringstream buffer;
+    CURL* curl = curl_easy_init();
+    if (curl) {
+        CURLcode res;
+        curl_easy_setopt(curl, CURLOPT_URL, address.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
+        res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            cerr << curl_easy_strerror(res);
+            exit(1);
+        }
+
+    }
+
+    return read_input(buffer, false);
+}
 int
 main(int argc, char** argv)
 {
+    
 	if(argc > 1 ) {
+
 		cerr << argc << endl;
 		for (size_t i = 0; i < argc; i++)
 		{
 			cerr << "argv[" << i + 1 << "]" << argv[i];
+			cerr << endl;
 		}
-		
+		cerr << endl << endl << endl << endl;
+
 		return 0;
 	}
 
 	//Ввод данных
-	const auto input = read_input(cin,true);
+    Input input;
+    if (argc > 1) {
+        input = download(argv[1]);
+    }
+
+    else {
+        input = read_input(cin, true);
+    }
 	// Расчеты
 	const auto bins = make_histogramm(input);
 	//Вывод данных
