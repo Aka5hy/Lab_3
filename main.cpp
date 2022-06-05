@@ -7,6 +7,7 @@
 #include <sstream>
 #include <string>
 #include <windows.h>
+#include <cstdio>
 
 
 
@@ -40,7 +41,7 @@ ver(int argc, char** argv, CURL* curl) {
             }
         }
         if (oper) {
-            cerr << "I don't now what i need say to help, sorry.\n But uou shoud do it.\n JUST DO IT!!!";
+            cerr << "I don't now what i need say to help, sorry.\n But you shoud do it.\n JUST DO IT!!!";
         }
     }
 
@@ -63,9 +64,8 @@ download(const string& address, int argc, char** argv) {
     CURL* curl = curl_easy_init();
     if (curl) {
 
-        ver(argc, argv, curl);
-
         CURLcode res;
+        ver(argc, argv, curl);
         curl_easy_setopt(curl, CURLOPT_URL, address.c_str());
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
@@ -100,7 +100,9 @@ main(int argc, char** argv)
 
 		return 0;
 	}
-
+    const char* name = "Commander Shepard";
+    int year = 2154;
+    printf("%s was born in %d.\n", name, year);
 
 	//¬вод данных
     Input input;
